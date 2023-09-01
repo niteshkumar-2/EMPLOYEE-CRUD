@@ -6,19 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  isDarkThemeSelected: boolean = false;
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
-  themeService: any;
+  onClickThemeMode(mode: string) {
+    const body = document.getElementsByTagName("body")[0];
 
-
-
-  toggle() {
-    const active = this.themeService.getActiveTheme() ;
-    if (active.name === 'light') {
-      this.themeService.setTheme('dark');
-    } else {
-      this.themeService.setTheme('light');
+    if (mode === "dark") {
+      this.isDarkThemeSelected = true;
+      body.setAttribute("data-bs-theme", "dark");
+    } else if (mode === "light") {
+      this.isDarkThemeSelected = false;
+      body.setAttribute("data-bs-theme", "");
     }
   }
 }
